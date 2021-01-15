@@ -14,5 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes(['verify' => true]);
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
+Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\UserController::class, 'index'])->middleware('verified')->name('home');
+
+Route::get('/search-user', [App\Http\Controllers\UserLiveSearch::class, 'findUser']);
+
+Route::get('/user/{id}', [App\Http\Controllers\UserController::class, 'getUserProfile']);
+Route::get('/home/user/{id}', [App\Http\Controllers\UserController::class, 'getUserProfile']);

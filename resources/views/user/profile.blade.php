@@ -1,23 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="friend-search-input-div">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">&#8594</span></span>
-            </div>
-            <input id="search-user" type="text" class="form-control" placeholder="Grow your network"
-                   aria-label="Grow your network" aria-describedby="basic-addon1">
-        </div>
-    </div>
-
     <div class="bg-white shadow rounded overflow-hidden">
-        <div class="logout-wrapper">
-            <a style="color: white" href="{{ route('logout') }}"
-               onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-            </form>
+        <div class="back-to-home-wrapper">
+            <button type="button" class="btn btn-light"><a style="color: black" href="{{ route('home') }}">{{ __('Back To Home Page') }}</a></button>
         </div>
     </div>
 
@@ -28,9 +14,16 @@
                     alt="..." width="130" class="rounded mb-2 img-thumbnail">
             </div>
             <div class="media-body mb-5 text-white">
-                <h4 class="mt-0 mb-4">{{ Auth::user()->name }} {{ Auth::user()->surname }}</h4>
+                <h4 class="mt-0 mb-4">{{ $user->name }} {{ $user->surname }}</h4>
             </div>
         </div>
+        <div class="send-friend-request-wrapper">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <button id="add-to-friends" type="button" class="btn btn-warning">Add To Friends</button>
+                    </div>
+                </div>
+            </div>
     </div>
 
     <div class="bg-light p-4 d-flex justify-content-end text-center">
