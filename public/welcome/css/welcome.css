@@ -147,3 +147,20 @@ body {
     color: #43115c !important;
     font-size: 20px !important;
 }
+.login-button {
+    background-color: #43115c !important;
+    border-color: #43115c !important;
+}
+.log-reg {
+    color: #43115c !important;
+}
+.card {
+    padding-top: 20%;
+    border: none;
+}
+.back-to-login-in-reg-page{
+    color: #43115c !important;
+}
+a {
+    text-decoration: none !important;
+}
