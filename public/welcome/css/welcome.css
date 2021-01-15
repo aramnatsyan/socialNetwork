@@ -201,6 +201,7 @@ a {
 }
 
 .back-to-home-wrapper {
+    width: 200px;
     position: absolute;
     right: 5px;
     top: 5px
@@ -211,4 +212,39 @@ a {
     position: absolute;
     left: 50%;
     transform: translate(-50%);
+}
+
+.w-100{
+    width: 100%;
+    border-radius: 10px !important;
+}
+
+#relationship-rejected {
+    background-color: red;
+    padding: 10px;
+    text-align: center;
+    user-select: unset;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#relationship-approved {
+    background-color: green;
+    padding: 10px;
+    text-align: center;
+    user-select: unset;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#relationship-pending {
+    background-color: #bdbd56;
+    padding: 10px;
+    text-align: center;
+    user-select: unset;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
 }

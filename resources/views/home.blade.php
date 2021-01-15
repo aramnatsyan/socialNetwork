@@ -65,5 +65,4 @@
                     alt="" class="img-fluid rounded shadow-sm"></div>
         </div>
     </div>
-    </div>
 @endsection
