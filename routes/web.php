@@ -21,3 +21,8 @@ Route::get('/search-user', [App\Http\Controllers\UserLiveSearch::class, 'findUse
 
 Route::get('/user/{id}', [App\Http\Controllers\UserController::class, 'getUserProfile']);
 Route::get('/home/user/{id}', [App\Http\Controllers\UserController::class, 'getUserProfile']);
+
+Route::post('/user/cancel-or-delete', [App\Http\Controllers\UsersRelationshipsController::class, 'deleteRelation']);
+Route::post('/home/user/cancel-or-delete', [App\Http\Controllers\UsersRelationshipsController::class, 'deleteRelation']);
+Route::post('/user/add-to-friend', [App\Http\Controllers\UsersRelationshipsController::class, 'create']);
+Route::post('/home/user/add-to-friend', [App\Http\Controllers\UsersRelationshipsController::class, 'create']);

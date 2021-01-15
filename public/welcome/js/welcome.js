@@ -79,7 +79,66 @@ $(document).ready(function () {
         })
     }
 
-    $('#add-to-friends').on('click', function () {
-        alert('test');
+    $('.relationship-action').on('click', function () {
+        let buttonAction = $(this).attr('id');
+        createRelationship(buttonAction);
     })
+
+    function createRelationship(buttonAction) {
+        let receiverId = $('#profile-user-id').val();
+        if (buttonAction === 'cancel-fr'){
+            cancelOrDeleteFriendRequest(receiverId);
+        }
+        else if (buttonAction === 'delete'){
+            cancelOrDeleteFriendRequest(receiverId);
+        }
+        else if (buttonAction === 'add-to-friends') {
+            addToFriends(receiverId);
+        }
+        else {
+            alert('Something went wrong !!!')
+        }
+    }
+
+    function cancelOrDeleteFriendRequest(receiverId) {
+        $.ajax({
+            type: 'POST',
+            url: 'cancel-or-delete',
+            data: {
+                receiverId: receiverId
+            },
+            dataType: 'json',
+            success: function (data) {
+                let res = JSON.parse(data)
+                if (res === true) {
+                    location.reload();
+                }
+                else {
+                    alert('Something went wrong with server !!!')
+                }
+            }
+        })
+    }
+
+    function addToFriends(receiverId) {
+        $.ajax({
+            type: 'POST',
+            url: 'add-to-friend',
+            data: {
+                receiverId: receiverId
+            },
+            dataType: 'json',
+            success: function (data) {
+                location.reload();
+                let res = JSON.parse(data)
+                if (res === true) {
+                    location.reload();
+                }
+                else {
+                    alert('Something went wrong with server !!!')
+                }
+            }
+        })
+    }
+
 })

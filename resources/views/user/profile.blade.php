@@ -3,7 +3,9 @@
 @section('content')
     <div class="bg-white shadow rounded overflow-hidden">
         <div class="back-to-home-wrapper">
-            <button type="button" class="btn btn-light"><a style="color: black" href="{{ route('home') }}">{{ __('Back To Home Page') }}</a></button>
+            <button type="button" class="btn btn-light"><a style="color: black"
+                                                           href="{{ route('home') }}">{{ __('Back To Home Page') }}</a>
+            </button>
         </div>
     </div>
 
@@ -18,12 +20,35 @@
             </div>
         </div>
         <div class="send-friend-request-wrapper">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <button id="add-to-friends" type="button" class="btn btn-warning">Add To Friends</button>
-                    </div>
+            <div class="input-group w-100">
+                <div class="input-group-prepend w-100">
+                    @if($relationship === 'Pending')
+                        @php
+                            $class = 'btn btn-warning';
+                            $actionButtonSecondClass = 'btn btn-danger';
+                            $actionName = 'Cancel';
+                        @endphp
+                        <div id="relationship-pending" class= "w-100"> {{$relationship}} </div>
+                        <button id="cancel-fr"  type="button" class= "{{$actionButtonSecondClass}} ml-2 relationship-action"> {{$actionName}} </button>
+
+                    @elseif($relationship === 'Approved')
+                        @php
+                            $class = 'btn btn-success';
+                            $actionButtonSecondClass = 'btn btn-danger';
+                            $actionName = 'Delete';
+                        @endphp
+                        <div id="relationship-approved" class= "w-100"> {{$relationship}} </div>
+                        <button id="delete"  type="button" class= "{{$actionButtonSecondClass}} ml-2 relationship-action"> {{$actionName}} </button>
+
+                    @elseif($relationship === 'Rejected')
+                        <div id="relationship-rejected" class= "w-100"> {{$relationship}} </div>
+                    @else
+                        <button id="add-to-friends" type="button" class= "btn btn-info btn-lg w-100 relationship-action"> Add To Friends</button>
+                    @endif
                 </div>
             </div>
+            <input id="profile-user-id" type="hidden" value="{{ $user->id }}">
+        </div>
     </div>
 
     <div class="bg-light p-4 d-flex justify-content-end text-center">
