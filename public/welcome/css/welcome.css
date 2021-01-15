@@ -139,7 +139,7 @@ body {
     object-position: left;
 }
 
-#welcome-page-logo img{
+#welcome-page-logo img {
     max-width: 300px;
 }
 
@@ -147,20 +147,68 @@ body {
     color: #43115c !important;
     font-size: 20px !important;
 }
+
 .login-button {
     background-color: #43115c !important;
     border-color: #43115c !important;
 }
+
 .log-reg {
     color: #43115c !important;
 }
+
 .card {
     padding-top: 20%;
     border: none;
 }
-.back-to-login-in-reg-page{
+
+.back-to-login-in-reg-page {
     color: #43115c !important;
 }
+
 a {
     text-decoration: none !important;
+}
+
+.profile-head {
+    transform: translateY(5rem)
+}
+
+.cover {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #1a50b3;
+}
+
+.logout-wrapper {
+    width: 50px;
+    position: absolute;
+    right: 15px;
+    top: 5px
+}
+
+.friend-search-input-div {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    z-index: 9999;
+}
+
+.form-control {
+    border-radius: unset;
+}
+
+.back-to-home-wrapper {
+    position: absolute;
+    right: 5px;
+    top: 5px
+}
+
+.send-friend-request-wrapper {
+    width: 200px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
 }
