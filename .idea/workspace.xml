@@ -19,12 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc25f83f-ebe2-4d77-8800-b0dbad4eb328" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/icons/arrow-icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="cc25f83f-ebe2-4d77-8800-b0dbad4eb328" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -172,11 +167,11 @@
       <recent name="C:\wamp64\www\socialNetwork\public\register" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\socialNetwork\public\welcome\images" />
       <recent name="C:\wamp64\www\socialNetwork\resources\views\friend-requests" />
       <recent name="C:\wamp64\www\socialNetwork\resources\views\friends" />
       <recent name="C:\wamp64\www\socialNetwork\resources\views" />
       <recent name="C:\wamp64\www\socialNetwork\resources\views\user" />
-      <recent name="C:\wamp64\www\socialNetwork\public" />
     </key>
   </component>
   <component name="RunManager">
