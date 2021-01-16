@@ -163,15 +163,15 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\wamp64\www\socialNetwork\public\register" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\socialNetwork" />
       <recent name="C:\wamp64\www\socialNetwork\public\welcome\images" />
       <recent name="C:\wamp64\www\socialNetwork\resources\views\friend-requests" />
       <recent name="C:\wamp64\www\socialNetwork\resources\views\friends" />
       <recent name="C:\wamp64\www\socialNetwork\resources\views" />
-      <recent name="C:\wamp64\www\socialNetwork\resources\views\user" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\socialNetwork\public\register" />
     </key>
   </component>
   <component name="RunManager">
