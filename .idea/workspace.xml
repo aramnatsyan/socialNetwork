@@ -20,15 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc25f83f-ebe2-4d77-8800-b0dbad4eb328" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/friend-requests/friendRequests.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/friends/friends.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/rejected-friend-requests/rejected.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/PostsController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Posts.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/factories/PostsFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_16_154127_create_posts_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeders/PostsSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/post/post.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UsersRelationshipsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersRelationshipsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserLiveSearch.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserLiveSearch.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/constants.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/constants.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/welcome/css/welcome.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/welcome/css/welcome.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/welcome/js/welcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/welcome/js/welcome.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/profile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/profile.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -174,15 +180,15 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\socialNetwork\public\register" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\socialNetwork\resources\views\friend-requests" />
       <recent name="C:\wamp64\www\socialNetwork\resources\views\friends" />
       <recent name="C:\wamp64\www\socialNetwork\resources\views" />
       <recent name="C:\wamp64\www\socialNetwork\resources\views\user" />
       <recent name="C:\wamp64\www\socialNetwork\public" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\wamp64\www\socialNetwork\public\register" />
     </key>
   </component>
   <component name="RunManager">
@@ -230,10 +236,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" key="#Deployment/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610728666601" />
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1610743677516">
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1610812781846">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610743677516" />
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610812781846" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1610525767379">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -254,6 +260,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610549327811" />
+    <state x="727" y="243" key="NewPhpClassDialog" timestamp="1610819075396">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="727" y="243" key="NewPhpClassDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610819075396" />
     <state x="794" y="443" key="NewPhpFileDialog" timestamp="1610805785053">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -262,10 +272,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="822" y="419" key="WebDeployment.AddServerDialog.v.1/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610728657129" />
-    <state x="667" y="253" width="585" height="592" key="find.popup" timestamp="1610724630036">
+    <state x="667" y="253" width="585" height="592" key="find.popup" timestamp="1610822887119">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="667" y="253" width="585" height="592" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610724630036" />
+    <state x="667" y="253" width="585" height="592" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610822887119" />
     <state x="787" y="291" key="refactoring.ChangeSignatureDialog" timestamp="1610784084624">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -274,5 +284,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610733190484" />
+    <state x="616" y="173" width="672" height="676" key="search.everywhere.popup" timestamp="1610822196478">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="173" width="672" height="676" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610822196478" />
   </component>
 </project>

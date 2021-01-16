@@ -170,4 +170,31 @@ $(document).ready(function () {
             }
         })
     }
+
+    $('#post-store').on('click', function () {
+        let postContent = $('body').find('#post-content').val();
+        let visibility = $('body').find('#visibility option:selected').val();
+        let error = $('body').find('.error');
+        let url = $(this).data('url');
+        let data = {
+            'content': postContent,
+            'status': visibility
+        }
+        if (postContent == '') {
+            error.removeClass('d-none');
+        } else {
+            error.addClass('d-none');
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: data,
+                dataType: 'json',
+                success: function (data) {
+                    if (data.fail == false) {
+                       location.reload();
+                    }
+                }
+            })
+        }
+    });
 })

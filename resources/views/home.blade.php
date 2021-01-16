@@ -34,8 +34,22 @@
     </div>
 
     <div class="bg-light p-4 d-flex justify-content-end text-center">
-        <ul class="list-inline mb-0 relations-and-posts">
 
+        <div id="ex1" class="modal post-modal">
+            <textarea id="post-content" style="width: 90%; height: 90%">Thanks for clicking. That felt good.</textarea>
+        </br>
+            <select name="visibility" id="visibility">
+                <option value="1">Public</option>
+                <option value="2">Only for friends</option>
+            </select>
+            <span class="error alert alert-danger d-none">Required</span>
+            <a href="#" rel="modal:close" id="close-modal">Close</a>
+            <button id="post-store" data-url="{{ route('post.store') }}">Save</button>
+        </div>
+        <p style="z-index: 9999"><a href="#ex1" rel="modal:open">Add Post</a></p>
+
+
+        <ul class="list-inline mb-0 relations-and-posts">
 
             <li id="Approved" class="list-inline-item relations-data">
                 <h5 class="font-weight-bold mb-0 d-block">{{$friends['count']}}</h5>
@@ -48,44 +62,50 @@
 
             <li id="Rejected" class="list-inline-item relations-data">
                 <h5 class="font-weight-bold mb-0 d-block">{{$rejectedFriendRequests['count']}}</h5>
-                <small class="text-muted"> <i class="fas fa-image mr-1"></i><a href="{{ url('rejected-requests')}}"> {{ __('Rejected Friend Requests') }}</a></small>
+                <small class="text-muted"> <i class="fas fa-image mr-1"></i><a
+                        href="{{ url('rejected-requests')}}"> {{ __('Rejected Friend Requests') }}</a></small>
                 <input id="rejected-friend-requests-count" type="hidden" value="{{$rejectedFriendRequests['count']}}">
-                <input id="rejected-friend-requests-receivers-ids" type="hidden" value="{{json_encode($rejectedFriendRequests['rejectedFriendRequestsReceiversIds'], true)}}">
+                <input id="rejected-friend-requests-receivers-ids" type="hidden"
+                       value="{{json_encode($rejectedFriendRequests['rejectedFriendRequestsReceiversIds'], true)}}">
             </li>
 
 
             <li id="Pending" class="list-inline-item relations-data">
                 <h5 class="font-weight-bold mb-0 d-block">{{$friendRequests['count']}}</h5>
-                <small class="text-muted"> <i class="fas fa-image mr-1"></i><a href="{{ url('active-requests')}}"> {{ __('Active Friend Requests') }}</a></small>
+                <small class="text-muted"> <i class="fas fa-image mr-1"></i><a
+                        href="{{ url('active-requests')}}"> {{ __('Active Friend Requests') }}</a></small>
                 <input id="friend-requests-count" type="hidden" value="{{$friendRequests['count']}}">
-                <input id="friend-requests-receivers-ids" type="hidden" value="{{json_encode($friendRequests['friendRequestsReceiversIds'], true)}}">
+                <input id="friend-requests-receivers-ids" type="hidden"
+                       value="{{json_encode($friendRequests['friendRequestsReceiversIds'], true)}}">
             </li>
 
 
             <li id="posts" class="list-inline-item relations-data">
-                <h5 class="font-weight-bold mb-0 d-block">745</h5><small class="text-muted"> <i
+                <h5 class="font-weight-bold mb-0 d-block">{{count($posts)}}</h5><small class="text-muted"> <i
                         class="fas fa-user mr-1"></i>Posts</small>
             </li>
         </ul>
     </div>
 
-    <div class="py-4 px-4">
-        <div class="d-flex align-items-center justify-content-between mb-3">
-            <h5 class="mb-0">Posts</h5>
-        </div>
+
+    <div class="container mt-2">
         <div class="row">
-            <div class="col-lg-6 mb-2 pr-lg-1"><img
-                    src="https://images.unsplash.com/photo-1469594292607-7bd90f8d3ba4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-                    alt="" class="img-fluid rounded shadow-sm"></div>
-            <div class="col-lg-6 mb-2 pl-lg-1"><img
-                    src="https://images.unsplash.com/photo-1493571716545-b559a19edd14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-                    alt="" class="img-fluid rounded shadow-sm"></div>
-            <div class="col-lg-6 pr-lg-1 mb-2"><img
-                    src="https://images.unsplash.com/photo-1453791052107-5c843da62d97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-                    alt="" class="img-fluid rounded shadow-sm"></div>
-            <div class="col-lg-6 pl-lg-1"><img
-                    src="https://images.unsplash.com/photo-1475724017904-b712052c192a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-                    alt="" class="img-fluid rounded shadow-sm"></div>
+            @if(!empty($posts))
+                @foreach($posts as $key => $post)
+                    <div class="col-md-4">
+                        <div class="single-blog-item">
+                            <div class="blog-thumnail">
+                                <a href="{{ url('post/'.$post->id)}}"><img src="http://via.placeholder.com/370x275"
+                                                                           alt="blog-img"></a>
+                            </div>
+                            <div class="blog-content">
+                                <p>{{$post->post}}</p>
+                                <a href="{{ url('post/'.$post->id)}}" class="more-btn">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
         </div>
     </div>
 @endsection
