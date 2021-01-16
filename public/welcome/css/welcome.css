@@ -158,7 +158,7 @@ body {
 }
 
 .card {
-    padding-top: 20%;
+    margin-top: 20%;
     border: none;
 }
 
@@ -255,11 +255,11 @@ a {
 }
 
 
-
 .avatar.avatar-xl {
     width: 5rem;
     height: 5rem;
 }
+
 .avatar {
     width: 2rem;
     height: 2rem;
@@ -273,19 +273,22 @@ a {
     font-weight: 600;
     vertical-align: bottom;
 }
+
 .card {
     background-color: #fff;
     border: 0 solid #eee;
     border-radius: 0;
 }
+
 .card {
-    margin-bottom: 30px;
-    -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,0.1), -1px 0 2px rgba(0,0,0,0.05);
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.1), -1px 0 2px rgba(0,0,0,0.05);
+    margin-bottom: 5px;
+    -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1), -1px 0 2px rgba(0, 0, 0, 0.05);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1), -1px 0 2px rgba(0, 0, 0, 0.05);
 }
-.card-body {
-    padding: 1.25rem;
-}
+
+/*.card-body {*/
+/*    padding: 1.25rem;*/
+/*}*/
 .tile-link {
     position: absolute;
     cursor: pointer;
@@ -296,12 +299,20 @@ a {
     z-index: 30;
 }
 
-
-
-.text-muted a{
-   color: #1d1c1c !important;
+.text-muted a {
+    color: #1d1c1c !important;
 }
 
-.text-muted a:hover{
+.text-muted a:hover {
     color: #e3342f !important;
+}
+
+.single-post-wrapper {
+    background-color: #90c0f0 !important
+}
+
+.post-modal {
+    height: 200px;
+    z-index: 9999;
+    padding-bottom: 30px;
 }

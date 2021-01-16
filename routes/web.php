@@ -45,3 +45,7 @@ Route::get('home/rejected-requests', [App\Http\Controllers\UsersRelationshipsCon
 Route::post('/user/reject-request', [App\Http\Controllers\UsersRelationshipsController::class, 'rejectRequest']);
 Route::post('/reject-request', [App\Http\Controllers\UsersRelationshipsController::class, 'rejectRequest']);
 Route::post('/home/user/reject-request', [App\Http\Controllers\UsersRelationshipsController::class, 'rejectRequest']);
+
+
+Route::get('/post/{id}', [App\Http\Controllers\PostsController::class, 'index']);
+Route::post('/post/store', [App\Http\Controllers\PostsController::class, 'store'])->name('post.store');
