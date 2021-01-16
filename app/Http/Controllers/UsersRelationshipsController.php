@@ -105,11 +105,121 @@ class UsersRelationshipsController extends Controller
             $deleted = false ;
             $receiverId = $request['receiverId'];
             $currentUserId = Auth::id();
-            $deleting = DB::table('relationships')->where('sender_id', '=', $currentUserId)->where('receiver_id', '=', $receiverId)->delete();
+
+            $deleting = DB::table('relationships')
+                ->where('sender_id', '=', $currentUserId)->where('receiver_id', '=', $receiverId)
+                ->orWhere('sender_id', '=', $receiverId)->where('receiver_id', '=', $currentUserId)
+                ->delete();
+
+
             if ($deleting) {
                 $deleted  = true;
             }
             return json_encode($deleted);
+        }
+    }
+
+    public function getUsersWithRelations(Request $request)
+    {
+        if (!empty($request['action']) && !empty($request['ids'])) {
+            $action = $request['action'];
+            $ids = json_decode($request['ids']);
+
+            $response = [];
+            $data = '';
+
+            if ($action == 'Approved') {
+                $data = $this->getFriends($ids);
+            }
+
+            if ($action == 'Pending') {
+                $data = $this->getFriendRequestPendedUsers($ids);
+            }
+
+            if ($action == 'Rejected') {
+                $data = $this->getRejectedUsers($ids);
+            }
+
+            $response = [
+                'massage' =>$action,
+                'data' => $data
+            ];
+            return route('friends', ['data' => $data]);
+//            return json_encode($response);
+        }
+    }
+
+    public function getFriends () {
+        $currentUserId = Auth::id();
+        $friendRequestStatusesArray = Config::get('constants.friend_request_status');
+
+        $friendsIds = DB::table('relationships')->where(function ($query){
+            $currentUserId = Auth::id();
+            $friendRequestStatusesArray = Config::get('constants.friend_request_status');
+            $query->where('receiver_id', '=', $currentUserId)->where('status', '=', $friendRequestStatusesArray['Approved']);
+        })
+            ->orWhere(function ($query){
+                $currentUserId = Auth::id();
+                $friendRequestStatusesArray = Config::get('constants.friend_request_status');
+                $query->where('sender_id', '=', $currentUserId)->where('status', '=', $friendRequestStatusesArray['Approved']);
+            })->get();
+
+        $friends = [];
+        foreach ($friendsIds as $friend => $data) {
+
+            if ($data->sender_id == $currentUserId) {
+                $friend =  DB::table('users')->where('id', '=' , $data->receiver_id)->get();
+            }
+            else {
+                $friend =  DB::table('users')->where('id', '=' , $data->sender_id)->get();
+            }
+
+           array_push($friends, $friend);
+        }
+        return view('friends.friends')->with(['friends' => $friends]);
+    }
+
+    public function getFriendRequestPendedUsers (){
+        $currentUserId = Auth::id();
+        $friendRequestStatusesArray = Config::get('constants.friend_request_status');
+        $friendRequests = [];
+        $friendsIds = DB::table('relationships')->where('receiver_id', '=', $currentUserId)->where('status', '=', $friendRequestStatusesArray['Pending'])->get();
+
+        foreach ($friendsIds as $friend => $data) {
+            $friend =  DB::table('users')->where('id', '=' , $data->sender_id)->get();
+            array_push($friendRequests, $friend);
+        }
+        return view('friend-requests.friendRequests')->with(['friendRequests' => $friendRequests]);
+    }
+
+    public function getRejectedUsers (){
+        $currentUserId = Auth::id();
+        $friendRequestStatusesArray = Config::get('constants.friend_request_status');
+        $rejectedUsers = [];
+        $usersIds = DB::table('relationships')->where('receiver_id', '=', $currentUserId)->where('status', '=', $friendRequestStatusesArray['Rejected'])->get();
+
+        foreach ($usersIds as $friend => $data) {
+            $user =  DB::table('users')->where('id', '=' , $data->sender_id)->get();
+            array_push($rejectedUsers, $user);
+        }
+        return view('rejected-friend-requests.rejected')->with(['friendRequests' => $rejectedUsers]);
+    }
+
+    public function rejectRequest (Request $request){
+
+        if (!empty($request['userId'])) {
+            $rejected = false ;
+            $senderId = $request['userId'];
+            $currentUserId = Auth::id();
+            $friendRequestStatusesArray = Config::get('constants.friend_request_status');
+            $rejecting = DB::table('relationships')
+                ->where('sender_id', '=', $senderId)->where('receiver_id', '=', $currentUserId)
+                ->update(['status' => $friendRequestStatusesArray['Rejected']]);
+
+            if ($rejecting) {
+                $rejected  = true;
+            }
+            return json_encode($rejected);
         }
     }
 }

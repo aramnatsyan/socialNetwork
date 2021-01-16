@@ -34,12 +34,35 @@
     </div>
 
     <div class="bg-light p-4 d-flex justify-content-end text-center">
-        <ul class="list-inline mb-0">
-            <li class="list-inline-item">
-                <h5 class="font-weight-bold mb-0 d-block">215</h5><small class="text-muted"> <i
-                        class="fas fa-image mr-1"></i>Friends</small>
+        <ul class="list-inline mb-0 relations-and-posts">
+
+
+            <li id="Approved" class="list-inline-item relations-data">
+                <h5 class="font-weight-bold mb-0 d-block">{{$friends['count']}}</h5>
+                <small class="text-muted"> <i class="fas fa-image mr-1"></i>
+                    <a href="{{ url('friends')}}"> {{ __('Friends') }}</a></small>
+                <input id="friends-count" type="hidden" value="{{$friends['count']}}">
+                <input id="friends-ids" type="hidden" value="{{json_encode($friends['friendsIds'], true)}}">
             </li>
-            <li class="list-inline-item">
+
+
+            <li id="Rejected" class="list-inline-item relations-data">
+                <h5 class="font-weight-bold mb-0 d-block">{{$rejectedFriendRequests['count']}}</h5>
+                <small class="text-muted"> <i class="fas fa-image mr-1"></i><a href="{{ url('rejected-requests')}}"> {{ __('Rejected Friend Requests') }}</a></small>
+                <input id="rejected-friend-requests-count" type="hidden" value="{{$rejectedFriendRequests['count']}}">
+                <input id="rejected-friend-requests-receivers-ids" type="hidden" value="{{json_encode($rejectedFriendRequests['rejectedFriendRequestsReceiversIds'], true)}}">
+            </li>
+
+
+            <li id="Pending" class="list-inline-item relations-data">
+                <h5 class="font-weight-bold mb-0 d-block">{{$friendRequests['count']}}</h5>
+                <small class="text-muted"> <i class="fas fa-image mr-1"></i><a href="{{ url('active-requests')}}"> {{ __('Active Friend Requests') }}</a></small>
+                <input id="friend-requests-count" type="hidden" value="{{$friendRequests['count']}}">
+                <input id="friend-requests-receivers-ids" type="hidden" value="{{json_encode($friendRequests['friendRequestsReceiversIds'], true)}}">
+            </li>
+
+
+            <li id="posts" class="list-inline-item relations-data">
                 <h5 class="font-weight-bold mb-0 d-block">745</h5><small class="text-muted"> <i
                         class="fas fa-user mr-1"></i>Posts</small>
             </li>
