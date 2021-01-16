@@ -16,7 +16,53 @@ class UserController extends Controller
 
     public function index ()
     {
-        return view('home');
+        $currentUserId = Auth::id();
+        $friendRequestStatusesArray = Config::get('constants.friend_request_status');
+
+        $friendsCount = 0;
+        $friendRequestsCount = 0;
+        $rejectedFriendRequestsCount = 0;
+
+        $friends = [
+            'count' => 0,
+            'friendsIds' => []
+        ];
+
+        $friendRequests = [
+            'count' => 0,
+            'friendRequestsReceiversIds' => []
+        ];
+
+        $rejectedFriendRequests = [
+            'count' => 0,
+            'rejectedFriendRequestsReceiversIds' => []
+        ];
+
+        $relationships = DB::table('relationships')->where('receiver_id', '=', $currentUserId)->get();
+        foreach ($relationships as $key => $relation) {
+            // get friends
+            if ($relation->status == $friendRequestStatusesArray['Approved']) {
+                $friendsCount = $friendsCount + 1;
+                array_push($friends['friendsIds'], $relation->sender_id);
+            }
+            $friends['count'] = $friendsCount;
+
+            // get friend requests
+            if ($relation->status == $friendRequestStatusesArray['Pending']) {
+                $friendRequestsCount = $friendRequestsCount + 1;
+                array_push($friendRequests['friendRequestsReceiversIds'], $relation->sender_id);
+            }
+            $friendRequests['count'] = $friendRequestsCount;
+
+            // get rejected friend requests
+            if ($relation->status == $friendRequestStatusesArray['Rejected']) {
+                $rejectedFriendRequestsCount = $rejectedFriendRequestsCount + 1;
+                array_push($rejectedFriendRequests['rejectedFriendRequestsReceiversIds'], $relation->sender_id);
+            }
+            $rejectedFriendRequests['count'] = $rejectedFriendRequestsCount;
+        }
+
+        return view('home')->with(['friends' => $friends, 'friendRequests' => $friendRequests, 'rejectedFriendRequests' => $rejectedFriendRequests]);
     }
 
     public function getUserProfile (Request $request, $id)
@@ -31,7 +77,8 @@ class UserController extends Controller
                 if ($user) {
                     $userData = json_decode($user)[0];
                     $foundUserId = $userData->id;
-                    $relationship = DB::table('relationships')->where('sender_id', '=', $currentUserId)->where('receiver_id', '=', $foundUserId)->get();
+                    $relationship = DB::table('relationships')->orwhere('sender_id', '=', $foundUserId)->orwhere('receiver_id', '=', $foundUserId)->get();
+
                     if (!empty(json_decode($relationship))) {
                         $relationship = json_decode($relationship)[0];
                         $relationshipStatusColumn = $relationship->status;

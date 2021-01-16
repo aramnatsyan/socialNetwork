@@ -84,6 +84,16 @@ $(document).ready(function () {
         createRelationship(buttonAction);
     })
 
+    $('.delete-friend').on('click', function () {
+        let userId = $(this).attr('data-id');
+        cancelOrDeleteFriendRequest(userId);
+    })
+
+    $('.reject-friend-request').on('click', function () {
+        let userId = $(this).attr('data-id');
+        rejectFriendRequest(userId)
+    })
+
     function createRelationship(buttonAction) {
         let receiverId = $('#profile-user-id').val();
         if (buttonAction === 'cancel-fr'){
@@ -120,6 +130,26 @@ $(document).ready(function () {
         })
     }
 
+    function rejectFriendRequest(userId) {
+        $.ajax({
+            type: 'POST',
+            url: 'reject-request',
+            data: {
+                userId: userId
+            },
+            dataType: 'json',
+            success: function (data) {
+                let res = JSON.parse(data)
+                if (res === true) {
+                    location.reload();
+                }
+                else {
+                    alert('Something went wrong with server !!!')
+                }
+            }
+        })
+    }
+
     function addToFriends(receiverId) {
         $.ajax({
             type: 'POST',
@@ -140,5 +170,4 @@ $(document).ready(function () {
             }
         })
     }
-
 })
